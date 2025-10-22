@@ -1,8 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyGadgets LK - Your World Of Innovation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* All the existing CSS remains the same */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
         body {
             background-color: #f8f9fa;
             color: #333;
             line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         .container {
@@ -46,6 +63,11 @@
             color: #ffd700;
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -84,6 +106,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
         }
 
         .hero {
@@ -442,20 +473,6 @@
 
         .product-modal-actions .btn {
             flex: 1;
-        }
-
-        @media (max-width: 768px) {
-            .product-modal-body {
-                flex-direction: column;
-            }
-            
-            .product-modal-image {
-                padding: 15px;
-            }
-            
-            .product-modal-details {
-                padding: 15px;
-            }
         }
 
         /* Rest of the styles remain the same */
@@ -995,18 +1012,74 @@
             margin-left: 10px;
         }
 
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1500;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-menu ul li {
+            margin: 20px 0;
+        }
+
+        .mobile-menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .close-mobile-menu {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* Enhanced Mobile Styles */
         @media (max-width: 768px) {
             .header-content {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 15px;
             }
             
+            .mobile-menu-btn {
+                display: block;
+            }
+            
             nav ul {
-                gap: 15px;
+                display: none;
             }
             
             .hero h2 {
                 font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+                padding: 0 10px;
             }
             
             .form-row {
@@ -1031,10 +1104,171 @@
             .order-details {
                 grid-template-columns: 1fr;
             }
+            
+            .product-modal-body {
+                flex-direction: column;
+            }
+            
+            .product-modal-image {
+                padding: 15px;
+            }
+            
+            .product-modal-details {
+                padding: 15px;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .cart-item-img {
+                width: 100%;
+                height: auto;
+                max-height: 200px;
+            }
+            
+            .cart-item-details {
+                width: 100%;
+            }
+            
+            .quantity-controls {
+                justify-content: center;
+            }
+            
+            .cart-total {
+                text-align: center;
+            }
+            
+            .checkout-section {
+                padding: 20px 15px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                text-align: center;
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+            
+            .tab.active {
+                border-bottom: none;
+                border-left: 3px solid #1a73e8;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .product-modal-actions {
+                flex-direction: column;
+            }
+            
+            .admin-content {
+                padding: 20px 15px;
+            }
+            
+            .admin-form {
+                padding: 15px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .product-img {
+                height: 180px;
+            }
+            
+            .product-info {
+                padding: 15px;
+            }
+            
+            .cart-section {
+                padding: 20px 15px;
+            }
+            
+            .confirmation {
+                padding: 30px 20px;
+            }
+            
+            .confirmation i {
+                font-size: 50px;
+            }
+            
+            .confirmation h3 {
+                font-size: 24px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h2 {
+                font-size: 28px;
+            }
+            
+            .products {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-img {
+                height: 200px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .admin-btn {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+            
+            .cart-icon {
+                font-size: 20px;
+            }
+            
+            .cart-count {
+                width: 18px;
+                height: 18px;
+                font-size: 10px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-mobile-menu" id="closeMobileMenu">&times;</button>
+        <ul>
+            <li><a href="#home" class="mobile-nav-link">Home</a></li>
+            <li><a href="#products" class="mobile-nav-link">Products</a></li>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
+
     <!-- Product Detail Modal -->
     <div class="product-modal" id="productModal">
         <div class="product-modal-content">
@@ -1180,6 +1414,9 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <div class="cart-icon" id="cartIcon">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
@@ -1398,6 +1635,11 @@
         let selectedPaymentMethod = 'cash'; // Default payment method
         
         // DOM Elements
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        
         const adminBtn = document.getElementById('adminBtn');
         const adminLoginBtnContainer = document.getElementById('adminLoginBtnContainer');
         const adminLoginPanel = document.getElementById('adminLoginPanel');
@@ -2157,6 +2399,21 @@
         
         // Set up all event listeners
         function setupEventListeners() {
+            // Mobile menu events
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+            
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+            
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                });
+            });
+            
             // Product modal events
             closeProductModal.addEventListener('click', closeProductModalFunc);
             
