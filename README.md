@@ -1,1 +1,2529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyGadgets LK - Your World Of Innovation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* All the existing CSS remains the same */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a73e8 0%, #6c8ef5 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #ffd700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.stockcake.com/public/3/8/8/388cec4b-fb1b-4a14-b381-b22bc58424c1_large/tech-accessories-array-stockcake.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #1a73e8;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #0d5bc2;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1a73e8;
+            color: #1a73e8;
+        }
+
+        .btn-outline:hover {
+            background: #1a73e8;
+            color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: #1a73e8;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #ffd700;
+            margin: 10px auto;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            max-height: 60px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a73e8;
+            margin-bottom: 5px;
+        }
+
+        .product-stock {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .stock-low {
+            color: #ff9500;
+            font-weight: 600;
+        }
+
+        .stock-out {
+            color: #dc3545;
+            font-weight: 600;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .view-details {
+            background: #f1f1f1;
+            color: #333;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            flex: 1;
+        }
+
+        .view-details:hover {
+            background: #e0e0e0;
+        }
+
+        .add-to-cart {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            flex: 1;
+        }
+
+        .add-to-cart:hover {
+            background: #0d5bc2;
+        }
+
+        .add-to-cart:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .out-of-stock-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Product Modal Styles */
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .product-modal-content {
+            background: white;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .product-modal-body {
+            display: flex;
+            flex-direction: row;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .product-modal-image {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f9f9;
+        }
+
+        .product-modal-image img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .product-modal-details {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1a73e8;
+        }
+
+        .product-modal-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+
+        .product-modal-stock {
+            font-size: 16px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background: #f5f5f5;
+        }
+
+        .product-modal-description {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .product-modal-features {
+            margin-bottom: 20px;
+        }
+
+        .product-modal-features ul {
+            padding-left: 20px;
+        }
+
+        .product-modal-features li {
+            margin-bottom: 8px;
+        }
+
+        .product-modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .product-modal-actions .btn {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .product-modal-body {
+                flex-direction: column;
+            }
+            
+            .product-modal-image {
+                padding: 15px;
+            }
+            
+            .product-modal-details {
+                padding: 15px;
+            }
+        }
+
+        /* Rest of the styles remain the same */
+        .cart-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            display: none;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: #1a73e8;
+            font-weight: 700;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .quantity-btn {
+            background: #f1f1f1;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .quantity {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-item {
+            color: #ff4757;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a73e8;
+        }
+
+        .checkout-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-method {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .payment-method.active {
+            border-color: #1a73e8;
+            background: #f0f7ff;
+        }
+
+        .payment-method i {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #1a73e8;
+        }
+
+        .card-details {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .card-details.active {
+            display: block;
+        }
+
+        .cash-info {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f0f7ff;
+            border-radius: 5px;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .cash-info.active {
+            display: block;
+        }
+
+        .confirmation {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            display: none;
+        }
+
+        .confirmation i {
+            font-size: 60px;
+            color: #4cd137;
+            margin-bottom: 20px;
+        }
+
+        .confirmation h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #1a73e8;
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: #ffd700;
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ffd700;
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #2d3748;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: #1a73e8;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2d3748;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: 0.3s;
+        }
+
+        .tab.active {
+            border-bottom: 3px solid #1a73e8;
+            color: #1a73e8;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Admin Panel Styles */
+        .admin-login {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+
+        .admin-btn {
+            background: #ffd700;
+            color: #1a1a2e;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .admin-btn.has-notifications::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 12px;
+            height: 12px;
+            background: #dc3545;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .admin-btn:hover {
+            background: #ffed4e;
+        }
+
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-content {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 10px;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .admin-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .admin-form {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .admin-products {
+            margin-top: 30px;
+        }
+
+        .admin-product-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .admin-product-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .admin-product-details {
+            flex: 1;
+        }
+
+        .admin-product-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .admin-product-price {
+            color: #1a73e8;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .admin-product-stock {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .admin-product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Order notifications panel */
+        .orders-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .orders-content {
+            background: white;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            border-radius: 10px;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .order-item {
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .order-item.new-order {
+            border-left: 4px solid #28a745;
+            background: #f8fff9;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-id {
+            font-weight: 700;
+            color: #1a73e8;
+        }
+
+        .order-date {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .order-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .order-actions {
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        .mark-read {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .new-badge {
+            background: #28a745;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .admin-product-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .admin-product-actions {
+                margin-top: 10px;
+                justify-content: center;
+            }
+            
+            .order-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Product Detail Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="product-modal-content">
+            <div class="product-modal-header">
+                <h2>Product Details</h2>
+                <button class="product-modal-close" id="closeProductModal">&times;</button>
+            </div>
+            <div class="product-modal-body" id="productModalBody">
+                <!-- Product details will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Button - Hidden by default, will be shown only to admin -->
+    <div class="admin-login" id="adminLoginBtnContainer">
+        <button class="admin-btn" id="adminBtn">
+            <i class="fas fa-cog"></i> Admin
+        </button>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="admin-panel" id="adminLoginPanel">
+        <div class="login-form">
+            <div class="admin-header">
+                <h2>Admin Login</h2>
+                <button class="admin-close" id="closeLogin">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="adminPassword">Password</label>
+                <input type="password" id="adminPassword" class="form-control" placeholder="Enter admin password">
+            </div>
+            <div style="text-align: right;">
+                <button class="btn" id="loginBtn">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h2>Admin Panel - Product Management</h2>
+                <button class="admin-close" id="closeAdmin">&times;</button>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="products">Products</div>
+                <div class="tab" data-tab="orders">Orders</div>
+                <div class="tab" data-tab="settings">Settings</div>
+            </div>
+            
+            <div class="tab-content active" id="productsTab">
+                <div class="admin-form">
+                    <h3>Add New Product</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productName">Product Name</label>
+                            <input type="text" id="productName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Price (Rs.)</label>
+                            <input type="number" id="productPrice" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productStock">Stock Quantity</label>
+                            <input type="number" id="productStock" class="form-control" value="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage">Image URL</label>
+                            <input type="text" id="productImage" class="form-control" placeholder="Paste image URL here">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Product Description</label>
+                        <textarea id="productDescription" class="form-control" placeholder="Enter product description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="productFeatures">Product Features (one per line)</label>
+                        <textarea id="productFeatures" class="form-control" placeholder="Enter product features, one per line" rows="4"></textarea>
+                    </div>
+                    <div style="text-align: right;">
+                        <button class="btn btn-success" id="addProductBtn">Add Product</button>
+                    </div>
+                </div>
+                
+                <div class="admin-products">
+                    <h3>Manage Products</h3>
+                    <div id="adminProductList">
+                        <!-- Admin product list will be populated here -->
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; text-align: center;">
+                    <button class="btn btn-warning" id="restockBtn">Restock All Products</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="ordersTab">
+                <h3>Order Notifications</h3>
+                <div id="adminOrdersList">
+                    <!-- Orders will be displayed here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="settingsTab">
+                <div class="admin-form">
+                    <h3>Change Admin Password</h3>
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" class="form-control">
+                    </div>
+                    <div style="text-align: right;">
+                        <button class="btn btn-warning" id="changePasswordBtn">Change Password</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-laptop"></i>
+                    <h1>Easy<span>Gadgets</span> LK</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Welcome to EasyGadgets LK</h2>
+            <p>YOUR WORLD OF INNOVATION</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            <div class="products" id="productList">
+                <!-- Products will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart-section" id="cartSection">
+        <div class="container">
+            <h2 class="section-title">Your Shopping Cart</h2>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+            <div class="cart-total" id="cartTotal">Total: Rs. 0</div>
+            <div style="text-align: right;">
+                <button class="btn" id="checkoutBtn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Section -->
+    <section class="checkout-section" id="checkoutSection">
+        <div class="container">
+            <h2 class="section-title">Checkout</h2>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="shipping">Shipping Information</div>
+                <div class="tab" data-tab="payment">Payment Method</div>
+                <div class="tab" data-tab="review">Order Review</div>
+            </div>
+            
+            <div class="tab-content active" id="shippingTab">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" class="form-control" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Shipping Address</label>
+                    <textarea id="address" class="form-control" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zipCode">Zip Code</label>
+                        <input type="text" id="zipCode" class="form-control" required>
+                    </div>
+                </div>
+                
+                <div style="text-align: right; margin-top: 20px;">
+                    <button class="btn" id="nextToPayment">Next: Payment Method</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="paymentTab">
+                <h3>Select Payment Method</h3>
+                
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="cash">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div>Cash on Delivery</div>
+                    </div>
+                </div>
+                
+                <div class="cash-info active" id="cashInfo">
+                    <h4><i class="fas fa-info-circle"></i> Cash on Delivery Information</h4>
+                    <p>You can pay with cash when your order is delivered. Our delivery executive will collect the payment at your doorstep.</p>
+                    <p>Please have the exact amount ready for a smooth transaction.</p>
+                </div>
+                
+                <div style="text-align: right; margin-top: 20px;">
+                    <button class="btn btn-secondary" id="backToShipping">Back</button>
+                    <button class="btn" id="nextToReview">Next: Order Review</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="reviewTab">
+                <div class="form-group">
+                    <h3>Order Summary</h3>
+                    <div id="orderSummary">
+                        <!-- Order items will be dynamically added here -->
+                    </div>
+                    <div class="cart-total" id="orderTotal">Total: Rs. 0</div>
+                </div>
+                
+                <div class="form-group">
+                    <h3>Shipping Information</h3>
+                    <div id="shippingInfo">
+                        <!-- Shipping info will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <h3>Payment Method</h3>
+                    <div id="paymentInfo">
+                        <!-- Payment info will be dynamically added here -->
+                    </div>
+                </div>
+                
+                <div style="text-align: right; margin-top: 20px;">
+                    <button class="btn btn-secondary" id="backToPayment">Back</button>
+                    <button class="btn" id="placeOrder">Place Order</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Confirmation -->
+    <section class="confirmation" id="confirmationSection">
+        <div class="container">
+            <i class="fas fa-check-circle"></i>
+            <h3>Order Confirmed!</h3>
+            <p>Thank you for your purchase. Your order has been successfully placed.</p>
+            <p>Order ID: <strong>#EG2023-<span id="orderId"></span></strong></p>
+            <p id="deliveryInfo">Your order will be delivered within 5-8 business days.</p>
+            <button class="btn" id="continueShopping">Continue Shopping</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About EasyGadgets LK</h3>
+                    <p>Your trusted partner for quality electronics and gadgets in Sri Lanka since 2020.</p>
+                    <p>We offer the latest tech products with excellent customer service.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#terms">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-phone"></i> +94 11 234 5678</p>
+                    <p><i class="fas fa-envelope"></i> lkeasygadgets@gmail.com</p>
+                    
+                    <div class="social-icons">
+                        <a href="https://web.facebook.com/profile.php?id=61580924500627"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 EasyGadgets LK. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize EmailJS with your credentials
+        emailjs.init("P4Na1uczqsKKJ7ONI"); // Your public key
+        
+        // Admin password - Will be loaded from localStorage
+        let ADMIN_PASSWORD = "admin123"; // Default password
+        
+        // EmailJS configuration
+        const EMAILJS_SERVICE_ID = "service_9y5d8zb"; // Your service ID
+        const EMAILJS_TEMPLATE_ID = "template_vq36jkc"; // Your template ID
+        const RECIPIENT_EMAIL = "lkeasygadgets@gmail.com"; // Your email
+        
+        // Product data - Will be loaded from localStorage
+        let products = [];
+        let cart = [];
+        let orders = [];
+        let selectedPaymentMethod = 'cash'; // Default payment method
+        
+        // DOM Elements
+        const adminBtn = document.getElementById('adminBtn');
+        const adminLoginBtnContainer = document.getElementById('adminLoginBtnContainer');
+        const adminLoginPanel = document.getElementById('adminLoginPanel');
+        const adminPanel = document.getElementById('adminPanel');
+        const closeLogin = document.getElementById('closeLogin');
+        const closeAdmin = document.getElementById('closeAdmin');
+        const loginBtn = document.getElementById('loginBtn');
+        const adminPassword = document.getElementById('adminPassword');
+        const restockBtn = document.getElementById('restockBtn');
+        const changePasswordBtn = document.getElementById('changePasswordBtn');
+        
+        const productList = document.getElementById('productList');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartSection = document.getElementById('cartSection');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const checkoutSection = document.getElementById('checkoutSection');
+        const confirmationSection = document.getElementById('confirmationSection');
+        const adminOrdersList = document.getElementById('adminOrdersList');
+        
+        // Product modal elements
+        const productModal = document.getElementById('productModal');
+        const productModalBody = document.getElementById('productModalBody');
+        const closeProductModal = document.getElementById('closeProductModal');
+        
+        // Admin product management elements
+        const addProductBtn = document.getElementById('addProductBtn');
+        const productName = document.getElementById('productName');
+        const productPrice = document.getElementById('productPrice');
+        const productStock = document.getElementById('productStock');
+        const productImage = document.getElementById('productImage');
+        const productDescription = document.getElementById('productDescription');
+        const productFeatures = document.getElementById('productFeatures');
+        const adminProductList = document.getElementById('adminProductList');
+        
+        // Password change elements
+        const currentPassword = document.getElementById('currentPassword');
+        const newPassword = document.getElementById('newPassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+        
+        // Tab elements
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Initialize the application
+        function init() {
+            loadAdminPassword();
+            loadProducts();
+            loadOrders();
+            renderProducts();
+            updateCart();
+            checkAdminNotifications();
+            
+            // Show admin button only for admin (based on special condition)
+            // For demonstration, we'll show it if a special URL parameter is present
+            // In production, you might want a more secure method
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('admin') || localStorage.getItem('admin_logged_in') === 'true') {
+                adminLoginBtnContainer.style.display = 'block';
+            }
+            
+            // Set up event listeners
+            setupEventListeners();
+        }
+        
+        // Load admin password from localStorage or use default
+        function loadAdminPassword() {
+            const savedPassword = localStorage.getItem('easygadgets_admin_password');
+            if (savedPassword) {
+                ADMIN_PASSWORD = savedPassword;
+            } else {
+                localStorage.setItem('easygadgets_admin_password', ADMIN_PASSWORD);
+            }
+        }
+        
+        // Load products from localStorage or initialize with default products
+        function loadProducts() {
+            const savedProducts = localStorage.getItem('easygadgets_products');
+            
+            if (savedProducts) {
+                products = JSON.parse(savedProducts);
+            } else {
+                // Default products with descriptions and features
+                products = [
+                    {
+                        id: 1,
+                        name: "Samsung Galaxy S23",
+                        price: 185000,
+                        stock: 15,
+                        img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                        description: "The Samsung Galaxy S23 is the latest flagship smartphone with cutting-edge features and premium design. Experience lightning-fast performance and stunning photography capabilities.",
+                        features: [
+                            "6.1-inch Dynamic AMOLED 2X display",
+                            "Triple camera system with 50MP main sensor",
+                            "Snapdragon 8 Gen 2 processor",
+                            "8GB RAM, 128GB/256GB storage",
+                            "3900mAh battery with fast charging",
+                            "IP68 water and dust resistance"
+                        ]
+                    },
+                    {
+                        id: 2,
+                        name: "Dell XPS 13 Laptop",
+                        price: 295000,
+                        stock: 8,
+                        img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                        description: "The Dell XPS 13 is an ultra-portable laptop that combines performance with elegance. Perfect for professionals and students who need power on the go.",
+                        features: [
+                            "13.4-inch InfinityEdge display",
+                            "11th Gen Intel Core i7 processor",
+                            "16GB LPDDR4x RAM, 512GB SSD",
+                            "Intel Iris Xe graphics",
+                            "Up to 14 hours battery life",
+                            "Carbon fiber palm rest"
+                        ]
+                    },
+                    {
+                        id: 3,
+                        name: "Apple Watch Series 8",
+                        price: 85000,
+                        stock: 0, // Out of stock
+                        img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                        description: "The Apple Watch Series 8 is the most advanced Apple Watch yet, with innovative health features and always-on Retina display.",
+                        features: [
+                            "45mm or 41mm case sizes",
+                            "Always-On Retina display",
+                            "Blood oxygen and ECG apps",
+                            "Temperature sensing for cycle tracking",
+                            "Crash Detection and Fall Detection",
+                            "Water resistant up to 50 meters"
+                        ]
+                    },
+                    {
+                        id: 4,
+                        name: "Sony WH-1000XM4 Headphones",
+                        price: 65000,
+                        stock: 3, // Low stock
+                        img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                        description: "Industry-leading noise canceling with Dual Noise Sensor technology. Next-level music with Edge-AI, co-developed with Sony Music Studios.",
+                        features: [
+                            "Industry-leading noise cancellation",
+                            "30-hour battery life with quick charging",
+                            "Touch sensor controls",
+                            "Wearing detection",
+                            "Speak-to-chat technology",
+                            "Multiple device pairing"
+                        ]
+                    }
+                ];
+                saveProducts();
+            }
+        }
+        
+        // Load orders from localStorage
+        function loadOrders() {
+            const savedOrders = localStorage.getItem('easygadgets_orders');
+            if (savedOrders) {
+                orders = JSON.parse(savedOrders);
+            }
+        }
+        
+        // Save products to localStorage
+        function saveProducts() {
+            localStorage.setItem('easygadgets_products', JSON.stringify(products));
+        }
+        
+        // Save orders to localStorage
+        function saveOrders() {
+            localStorage.setItem('easygadgets_orders', JSON.stringify(orders));
+        }
+        
+        // Render products to the page
+        function renderProducts() {
+            productList.innerHTML = '';
+            
+            products.forEach(product => {
+                const isOutOfStock = product.stock === 0;
+                const isLowStock = product.stock > 0 && product.stock <= 5;
+                
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                productCard.innerHTML = `
+                    ${isOutOfStock ? '<div class="out-of-stock-badge">Out of Stock</div>' : ''}
+                    <img src="${product.img}" alt="${product.name}" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <p class="product-price">Rs. ${product.price.toLocaleString()}</p>
+                        <p class="product-stock ${isLowStock ? 'stock-low' : ''} ${isOutOfStock ? 'stock-out' : ''}">
+                            ${isOutOfStock ? 'Out of Stock' : `${product.stock} in stock`}
+                        </p>
+                        <div class="product-actions">
+                            <button class="view-details" data-id="${product.id}">View Details</button>
+                            <button class="add-to-cart" data-id="${product.id}" ${isOutOfStock ? 'disabled' : ''}>
+                                ${isOutOfStock ? 'Out of Stock' : 'Add to Cart'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productList.appendChild(productCard);
+            });
+            
+            // Add event listeners to view details buttons
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    showProductDetails(id);
+                });
+            });
+            
+            // Add event listeners to add to cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    addToCart(id);
+                });
+            });
+        }
+        
+        // Show product details in modal
+        function showProductDetails(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const isOutOfStock = product.stock === 0;
+            const isLowStock = product.stock > 0 && product.stock <= 5;
+            
+            productModalBody.innerHTML = `
+                <div class="product-modal-image">
+                    <img src="${product.img}" alt="${product.name}">
+                </div>
+                <div class="product-modal-details">
+                    <h2 class="product-modal-title">${product.name}</h2>
+                    <div class="product-modal-price">Rs. ${product.price.toLocaleString()}</div>
+                    <div class="product-modal-stock ${isLowStock ? 'stock-low' : ''} ${isOutOfStock ? 'stock-out' : ''}">
+                        ${isOutOfStock ? 'Out of Stock' : `${product.stock} units available`}
+                    </div>
+                    <div class="product-modal-description">
+                        ${product.description}
+                    </div>
+                    <div class="product-modal-features">
+                        <h3>Key Features:</h3>
+                        <ul>
+                            ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="product-modal-actions">
+                        <button class="btn btn-outline" id="closeModalBtn">Close</button>
+                        <button class="btn ${isOutOfStock ? 'btn-secondary' : ''}" id="addToCartFromModal" data-id="${product.id}" ${isOutOfStock ? 'disabled' : ''}>
+                            ${isOutOfStock ? 'Out of Stock' : 'Add to Cart'}
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            productModal.style.display = 'flex';
+            
+            // Add event listeners to modal buttons
+            document.getElementById('closeModalBtn').addEventListener('click', closeProductModalFunc);
+            document.getElementById('addToCartFromModal').addEventListener('click', function() {
+                if (!isOutOfStock) {
+                    addToCart(productId);
+                    closeProductModalFunc();
+                    showNotification(`${product.name} added to cart!`);
+                }
+            });
+        }
+        
+        // Close product modal
+        function closeProductModalFunc() {
+            productModal.style.display = 'none';
+        }
+        
+        // Render admin product list
+        function renderAdminProducts() {
+            adminProductList.innerHTML = '';
+            
+            if (products.length === 0) {
+                adminProductList.innerHTML = '<p>No products found. Add your first product!</p>';
+                return;
+            }
+            
+            products.forEach(product => {
+                const isLowStock = product.stock > 0 && product.stock <= 5;
+                const isOutOfStock = product.stock === 0;
+                
+                const productItem = document.createElement('div');
+                productItem.className = 'admin-product-item';
+                productItem.innerHTML = `
+                    <img src="${product.img}" alt="${product.name}" class="admin-product-img">
+                    <div class="admin-product-details">
+                        <div class="admin-product-title">${product.name}</div>
+                        <div class="admin-product-price">Rs. ${product.price.toLocaleString()}</div>
+                        <div class="admin-product-stock ${isLowStock ? 'stock-low' : ''} ${isOutOfStock ? 'stock-out' : ''}">
+                            Stock: ${product.stock}
+                            ${isLowStock ? ' (Low Stock)' : ''}
+                            ${isOutOfStock ? ' (Out of Stock)' : ''}
+                        </div>
+                    </div>
+                    <div class="admin-product-actions">
+                        <button class="btn btn-warning restock-btn" data-id="${product.id}">Restock</button>
+                        <button class="btn btn-danger" data-id="${product.id}">Delete</button>
+                    </div>
+                `;
+                adminProductList.appendChild(productItem);
+            });
+            
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.admin-product-actions .btn-danger').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    deleteProduct(id);
+                });
+            });
+            
+            // Add event listeners to restock buttons
+            document.querySelectorAll('.restock-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    restockProduct(id);
+                });
+            });
+        }
+        
+        // Render admin orders list
+        function renderAdminOrders() {
+            adminOrdersList.innerHTML = '';
+            
+            if (orders.length === 0) {
+                adminOrdersList.innerHTML = '<p>No orders yet.</p>';
+                return;
+            }
+            
+            // Sort orders by date (newest first)
+            const sortedOrders = [...orders].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            sortedOrders.forEach(order => {
+                const isNew = order.status === 'new';
+                
+                const orderItem = document.createElement('div');
+                orderItem.className = `order-item ${isNew ? 'new-order' : ''}`;
+                
+                // Format order items as a list
+                const itemsList = order.items.map(item => 
+                    `${item.name} x ${item.quantity} - Rs. ${(item.price * item.quantity).toLocaleString()}`
+                ).join('<br>');
+                
+                orderItem.innerHTML = `
+                    <div class="order-header">
+                        <div>
+                            <span class="order-id">Order #${order.id}</span>
+                            ${isNew ? '<span class="new-badge">NEW</span>' : ''}
+                        </div>
+                        <div class="order-date">${new Date(order.date).toLocaleString()}</div>
+                    </div>
+                    <div class="order-details">
+                        <div>
+                            <h4>Customer Information</h4>
+                            <p><strong>Name:</strong> ${order.customer.firstName} ${order.customer.lastName}</p>
+                            <p><strong>Email:</strong> ${order.customer.email}</p>
+                            <p><strong>Phone:</strong> ${order.customer.phone}</p>
+                            <p><strong>Address:</strong> ${order.customer.address}, ${order.customer.city}, ${order.customer.zipCode}</p>
+                            <p><strong>Payment Method:</strong> ${order.paymentMethod}</p>
+                        </div>
+                        <div>
+                            <h4>Order Items</h4>
+                            <p>${itemsList}</p>
+                            <p><strong>Total: Rs. ${order.total.toLocaleString()}</strong></p>
+                        </div>
+                    </div>
+                    ${isNew ? `
+                    <div class="order-actions">
+                        <button class="mark-read" data-id="${order.id}">Mark as Read</button>
+                    </div>
+                    ` : ''}
+                `;
+                adminOrdersList.appendChild(orderItem);
+            });
+            
+            // Add event listeners to mark as read buttons
+            document.querySelectorAll('.mark-read').forEach(button => {
+                button.addEventListener('click', function() {
+                    const orderId = parseInt(this.getAttribute('data-id'));
+                    markOrderAsRead(orderId);
+                });
+            });
+        }
+        
+        // Add product to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            
+            if (!product) return;
+            
+            // Check if product is in stock
+            if (product.stock === 0) {
+                showNotification(`${product.name} is out of stock!`);
+                return;
+            }
+            
+            // Check if item already in cart
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                // Check if we have enough stock
+                if (existingItem.quantity + 1 > product.stock) {
+                    showNotification(`Only ${product.stock} units of ${product.name} available!`);
+                    return;
+                }
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    img: product.img,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            // Show cart section when item is added
+            cartSection.style.display = 'block';
+            
+            // Show success message
+            showNotification(`${product.name} added to cart!`);
+        }
+        
+        // Delete product from admin panel
+        function deleteProduct(productId) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                products = products.filter(p => p.id !== productId);
+                saveProducts();
+                renderProducts();
+                renderAdminProducts();
+                showNotification('Product deleted successfully!');
+            }
+        }
+        
+        // Restock a product
+        function restockProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const newStock = prompt(`Enter new stock quantity for ${product.name}:`, product.stock);
+            
+            if (newStock !== null && !isNaN(newStock) && newStock >= 0) {
+                product.stock = parseInt(newStock);
+                saveProducts();
+                renderProducts();
+                renderAdminProducts();
+                showNotification(`${product.name} stock updated to ${newStock}!`);
+            }
+        }
+        
+        // Restock all products
+        function restockAllProducts() {
+            if (confirm('Restock all products to 10 units each?')) {
+                products.forEach(product => {
+                    product.stock = 10;
+                });
+                saveProducts();
+                renderProducts();
+                renderAdminProducts();
+                showNotification('All products restocked to 10 units!');
+            }
+        }
+        
+        // Add new product from admin panel
+        function addNewProduct() {
+            const name = productName.value.trim();
+            const price = parseInt(productPrice.value);
+            const stock = parseInt(productStock.value);
+            const img = productImage.value.trim();
+            const description = productDescription.value.trim();
+            const featuresText = productFeatures.value.trim();
+            
+            if (!name || !price || !stock || !img || !description) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            if (stock < 0) {
+                alert('Stock cannot be negative');
+                return;
+            }
+            
+            // Process features (split by new line)
+            const features = featuresText ? featuresText.split('\n').filter(f => f.trim() !== '') : [];
+            
+            // Generate a new ID
+            const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+            
+            // Add the new product
+            products.push({
+                id: newId,
+                name,
+                price,
+                stock,
+                img,
+                description,
+                features
+            });
+            
+            saveProducts();
+            renderProducts();
+            renderAdminProducts();
+            
+            // Clear the form
+            productName.value = '';
+            productPrice.value = '';
+            productStock.value = '10';
+            productImage.value = '';
+            productDescription.value = '';
+            productFeatures.value = '';
+            
+            showNotification('Product added successfully!');
+        }
+        
+        // Save order and send notification
+        function saveOrder(orderData) {
+            // Add to orders array with 'new' status
+            orderData.status = 'new';
+            orders.push(orderData);
+            saveOrders();
+            
+            // Update product stock
+            orderData.items.forEach(item => {
+                const product = products.find(p => p.id === item.id);
+                if (product) {
+                    product.stock -= item.quantity;
+                    if (product.stock < 0) product.stock = 0;
+                }
+            });
+            
+            saveProducts();
+            renderProducts();
+            
+            // Send email notification
+            sendOrderNotification(orderData);
+            
+            // Update admin notification indicator
+            checkAdminNotifications();
+        }
+        
+        // Mark order as read
+        function markOrderAsRead(orderId) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = 'read';
+                saveOrders();
+                renderAdminOrders();
+                checkAdminNotifications();
+            }
+        }
+        
+        // Check for new orders and update admin notification
+        function checkAdminNotifications() {
+            const newOrders = orders.filter(order => order.status === 'new').length;
+            const adminBtn = document.getElementById('adminBtn');
+            
+            if (newOrders > 0) {
+                adminBtn.classList.add('has-notifications');
+                adminBtn.title = `${newOrders} new orders`;
+            } else {
+                adminBtn.classList.remove('has-notifications');
+                adminBtn.title = 'Admin Panel';
+            }
+        }
+        
+        // Send order notification via EmailJS
+        function sendOrderNotification(orderData) {
+            // Prepare email parameters
+            const templateParams = {
+                to_email: RECIPIENT_EMAIL,
+                order_id: orderData.id,
+                customer_name: `${orderData.customer.firstName} ${orderData.customer.lastName}`,
+                customer_email: orderData.customer.email,
+                customer_phone: orderData.customer.phone,
+                customer_address: `${orderData.customer.address}, ${orderData.customer.city}, ${orderData.customer.zipCode}`,
+                payment_method: orderData.paymentMethod,
+                order_items: orderData.items.map(item => 
+                    `${item.name} x ${item.quantity} - Rs. ${(item.price * item.quantity).toLocaleString()}`
+                ).join('\n'),
+                order_total: `Rs. ${orderData.total.toLocaleString()}`,
+                order_date: new Date(orderData.date).toLocaleString()
+            };
+            
+            // Send email using EmailJS
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                .then(function(response) {
+                    console.log('Order notification sent successfully!', response.status, response.text);
+                    showNotification('Order confirmation sent!');
+                }, function(error) {
+                    console.log('Failed to send order notification:', error);
+                    // Fallback: Save order for later notification
+                    const pendingNotifications = JSON.parse(localStorage.getItem('pending_notifications') || '[]');
+                    pendingNotifications.push(orderData);
+                    localStorage.setItem('pending_notifications', JSON.stringify(pendingNotifications));
+                    showNotification('Order placed! Email notification failed but order was saved.');
+                });
+        }
+        
+        // Update cart display
+        function updateCart() {
+            cartItems.innerHTML = '';
+            let total = 0;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; padding: 20px;">Your cart is empty</p>';
+                cartSection.style.display = 'none';
+            } else {
+                cart.forEach(item => {
+                    const product = products.find(p => p.id === item.id);
+                    const maxQuantity = product ? product.stock : 0;
+                    
+                    total += item.price * item.quantity;
+                    
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">Rs. ${item.price.toLocaleString()}</div>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn decrease" data-id="${item.id}" ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="quantity-btn increase" data-id="${item.id}" ${item.quantity >= maxQuantity ? 'disabled' : ''}>+</button>
+                            </div>
+                            ${item.quantity >= maxQuantity ? '<div style="color: #dc3545; font-size: 12px;">Max available: ' + maxQuantity + '</div>' : ''}
+                        </div>
+                        <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+                    `;
+                    
+                    cartItems.appendChild(cartItemElement);
+                });
+            }
+            
+            // Update cart total
+            cartTotal.textContent = `Total: Rs. ${total.toLocaleString()}`;
+            
+            // Update cart count
+            const cartCount = document.querySelector('.cart-count');
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            // Add event listeners to quantity buttons
+            document.querySelectorAll('.increase').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    const item = cart.find(item => item.id === id);
+                    const product = products.find(p => p.id === id);
+                    
+                    if (item && product && item.quantity < product.stock) {
+                        item.quantity += 1;
+                        updateCart();
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.decrease').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    const item = cart.find(item => item.id === id);
+                    if (item && item.quantity > 1) {
+                        item.quantity -= 1;
+                        updateCart();
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    cart = cart.filter(item => item.id !== id);
+                    updateCart();
+                });
+            });
+        }
+        
+        // Show notification
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #4cd137;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                transition: transform 0.3s, opacity 0.3s;
+                transform: translateX(100%);
+                opacity: 0;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+                notification.style.opacity = '1';
+            }, 10);
+            
+            // Animate out and remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // Change admin password
+        function changeAdminPassword() {
+            const current = currentPassword.value;
+            const newPass = newPassword.value;
+            const confirm = confirmPassword.value;
+            
+            if (!current || !newPass || !confirm) {
+                alert('Please fill in all password fields');
+                return;
+            }
+            
+            if (current !== ADMIN_PASSWORD) {
+                alert('Current password is incorrect');
+                return;
+            }
+            
+            if (newPass !== confirm) {
+                alert('New passwords do not match');
+                return;
+            }
+            
+            if (newPass.length < 4) {
+                alert('New password must be at least 4 characters long');
+                return;
+            }
+            
+            // Update the password
+            ADMIN_PASSWORD = newPass;
+            localStorage.setItem('easygadgets_admin_password', newPass);
+            
+            // Clear the form
+            currentPassword.value = '';
+            newPassword.value = '';
+            confirmPassword.value = '';
+            
+            showNotification('Password changed successfully!');
+        }
+        
+        // Set up all event listeners
+        function setupEventListeners() {
+            // Product modal events
+            closeProductModal.addEventListener('click', closeProductModalFunc);
+            
+            // Close modal when clicking outside
+            productModal.addEventListener('click', function(e) {
+                if (e.target === productModal) {
+                    closeProductModalFunc();
+                }
+            });
+            
+            // Admin panel events
+            adminBtn.addEventListener('click', () => {
+                adminLoginPanel.style.display = 'flex';
+            });
+            
+            closeLogin.addEventListener('click', () => {
+                adminLoginPanel.style.display = 'none';
+                adminPassword.value = '';
+            });
+            
+            closeAdmin.addEventListener('click', () => {
+                adminPanel.style.display = 'none';
+                localStorage.setItem('admin_logged_in', 'false');
+            });
+            
+            loginBtn.addEventListener('click', () => {
+                if (adminPassword.value === ADMIN_PASSWORD) {
+                    adminLoginPanel.style.display = 'none';
+                    adminPanel.style.display = 'flex';
+                    renderAdminProducts();
+                    renderAdminOrders();
+                    adminPassword.value = '';
+                    localStorage.setItem('admin_logged_in', 'true');
+                } else {
+                    alert('Incorrect password!');
+                }
+            });
+            
+            addProductBtn.addEventListener('click', addNewProduct);
+            
+            restockBtn.addEventListener('click', restockAllProducts);
+            
+            // Password change event
+            changePasswordBtn.addEventListener('click', changeAdminPassword);
+            
+            // Tab switching in admin panel
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Hide all tab contents
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Show the corresponding tab content
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(`${tabId}Tab`).classList.add('active');
+                });
+            });
+            
+            // Cart icon click to show/hide cart
+            cartIcon.addEventListener('click', function() {
+                if (cart.length > 0) {
+                    cartSection.style.display = cartSection.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+            
+            // Checkout process
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('Your cart is empty. Please add products before checkout.');
+                    return;
+                }
+                
+                // Check if all items are still in stock
+                for (const item of cart) {
+                    const product = products.find(p => p.id === item.id);
+                    if (!product || product.stock < item.quantity) {
+                        alert(`Sorry, ${item.name} is no longer available in the requested quantity. Please update your cart.`);
+                        updateCart();
+                        return;
+                    }
+                }
+                
+                cartSection.style.display = 'none';
+                checkoutSection.style.display = 'block';
+                window.scrollTo(0, checkoutSection.offsetTop);
+            });
+            
+            // Payment method selection
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', function() {
+                    // Remove active class from all payment methods
+                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                    // Add active class to clicked method
+                    this.classList.add('active');
+                    
+                    // Get the selected payment method
+                    selectedPaymentMethod = this.getAttribute('data-method');
+                    
+                    // Show/hide appropriate payment details
+                    if (selectedPaymentMethod === 'cash') {
+                        document.getElementById('cashInfo').classList.add('active');
+                    } else {
+                        document.getElementById('cashInfo').classList.remove('active');
+                    }
+                });
+            });
+            
+            // Tab functionality for checkout
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all tab contents
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Show the corresponding tab content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(`${tabId}Tab`).classList.add('active');
+                });
+            });
+            
+            // Next and Back buttons for checkout
+            document.getElementById('nextToPayment').addEventListener('click', function() {
+                // Validate shipping form
+                if (validateShippingForm()) {
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelector('.tab[data-tab="payment"]').classList.add('active');
+                    
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById('paymentTab').classList.add('active');
+                }
+            });
+            
+            document.getElementById('backToShipping').addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelector('.tab[data-tab="shipping"]').classList.add('active');
+                
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById('shippingTab').classList.add('active');
+            });
+            
+            document.getElementById('nextToReview').addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelector('.tab[data-tab="review"]').classList.add('active');
+                
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById('reviewTab').classList.add('active');
+                
+                updateOrderSummary();
+                updateShippingInfo();
+                updatePaymentInfo();
+            });
+            
+            document.getElementById('backToPayment').addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelector('.tab[data-tab="payment"]').classList.add('active');
+                
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById('paymentTab').classList.add('active');
+            });
+            
+            // Place order button
+            document.getElementById('placeOrder').addEventListener('click', function() {
+                // Create order object
+                const orderId = Math.floor(1000 + Math.random() * 9000);
+                const orderDate = new Date().toISOString();
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+                const city = document.getElementById('city').value;
+                const zipCode = document.getElementById('zipCode').value;
+                
+                // Calculate total
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                
+                const orderData = {
+                    id: orderId,
+                    date: orderDate,
+                    customer: {
+                        firstName,
+                        lastName,
+                        email,
+                        phone,
+                        address,
+                        city,
+                        zipCode
+                    },
+                    items: [...cart],
+                    paymentMethod: selectedPaymentMethod,
+                    total: total
+                };
+                
+                // Save the order
+                saveOrder(orderData);
+                
+                // Show confirmation
+                checkoutSection.style.display = 'none';
+                confirmationSection.style.display = 'block';
+                document.getElementById('orderId').textContent = orderId;
+                
+                // Update delivery info based on payment method
+                if (selectedPaymentMethod === 'cash') {
+                    document.getElementById('deliveryInfo').textContent = 
+                        'Your order will be delivered within 3-5 business days. Please have the exact amount ready for cash payment upon delivery.';
+                }
+                
+                // Clear cart
+                cart = [];
+                updateCart();
+            });
+            
+            // Continue shopping button
+            document.getElementById('continueShopping').addEventListener('click', function() {
+                confirmationSection.style.display = 'none';
+                // Reset forms
+                document.getElementById('shippingTab').querySelectorAll('input, textarea').forEach(field => {
+                    field.value = '';
+                });
+                // Reset to default payment method
+                selectedPaymentMethod = 'cash';
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                document.querySelector('.payment-method[data-method="cash"]').classList.add('active');
+                document.getElementById('cashInfo').classList.add('active');
+            });
+        }
+        
+        // Update order summary in checkout
+        function updateOrderSummary() {
+            const orderSummary = document.getElementById('orderSummary');
+            const orderTotal = document.getElementById('orderTotal');
+            let total = 0;
+            
+            orderSummary.innerHTML = '';
+            
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                
+                const orderItem = document.createElement('div');
+                orderItem.style.display = 'flex';
+                orderItem.style.justifyContent = 'space-between';
+                orderItem.style.marginBottom = '10px';
+                orderItem.style.paddingBottom = '10px';
+                orderItem.style.borderBottom = '1px solid #eee';
+                
+                orderItem.innerHTML = `
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>Rs. ${(item.price * item.quantity).toLocaleString()}</span>
+                `;
+                
+                orderSummary.appendChild(orderItem);
+            });
+            
+            orderTotal.textContent = `Total: Rs. ${total.toLocaleString()}`;
+        }
+        
+        // Update shipping info in order review
+        function updateShippingInfo() {
+            const shippingInfo = document.getElementById('shippingInfo');
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const zipCode = document.getElementById('zipCode').value;
+            
+            shippingInfo.innerHTML = `
+                <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>Address:</strong> ${address}</p>
+                <p><strong>City:</strong> ${city}</p>
+                <p><strong>Zip Code:</strong> ${zipCode}</p>
+            `;
+        }
+        
+        // Update payment info in order review
+        function updatePaymentInfo() {
+            const paymentInfo = document.getElementById('paymentInfo');
+            
+            if (selectedPaymentMethod === 'cash') {
+                paymentInfo.innerHTML = `
+                    <p><strong>Payment Method:</strong> Cash on Delivery</p>
+                    <p>You will pay with cash when your order is delivered.</p>
+                `;
+            }
+        }
+        
+        // Form validation functions
+        function validateShippingForm() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const zipCode = document.getElementById('zipCode').value;
+            
+            if (!firstName || !lastName || !email || !phone || !address || !city || !zipCode) {
+                alert('Please fill in all shipping information fields.');
+                return false;
+            }
+            
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+            
+            if (!validatePhone(phone)) {
+                alert('Please enter a valid phone number.');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Helper validation functions
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function validatePhone(phone) {
+            // Simple validation for Sri Lankan phone numbers
+            const re = /^(\+94|0)?[1-9]\d{8}$/;
+            return re.test(phone.replace(/\s/g, ''));
+        }
+        
+        // Initialize the application when the page loads
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
